@@ -1,2 +1,2 @@
-import { numbers } from './form';
+import { numbers } from "./form";
 numbers();

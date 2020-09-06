@@ -1,5 +1,6 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -31,13 +32,12 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public') 
     },
-    stats: 'errors-only',
+    stats: 'errors-warnings',
     plugins: [
-        new ForkTsCheckerWebpackPlugin({
-            eslint: {
-                files: './src/**/*.{ts,js}',
-                emitWarning: false
-            }
-        })
+        new ForkTsCheckerWebpackPlugin(),
+        new ESLintPlugin({
+            files: './src/**/*.ts',
+            emitWarning: true
+        }),
     ]
 }
